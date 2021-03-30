@@ -18,7 +18,7 @@ export default function Container({
   );
 }
 
-const StyledContainer = styled.div` 
+const StyledContainer = styled.section` 
   background-color: white;
   width:${(props) => props.width};
   border-radius: 7px;

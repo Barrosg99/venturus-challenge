@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from '../../components';
+import { Container, TeamList } from '../../components';
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         icon
         width="47%"
       >
-        Teams component
+        <TeamList />
       </Container>
       <div>
         <Container
@@ -33,7 +33,7 @@ const Wrapper = styled.main`
   padding: 40px 30px;
   height: 89vh;
 
-  div:nth-child(2) {
+  & > div:nth-child(2) {
     width: 47%;
     display: flex;
     flex-direction: column;

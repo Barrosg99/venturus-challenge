@@ -9,6 +9,8 @@ describe('Rendering <App />', () => {
     render(<App />);
     expect(screen.getByText(/squad management tool/i)).toBeInTheDocument();
     expect(screen.getByText(/2020 - All rights reserved/i)).toBeInTheDocument();
+    expect(screen.getByText(/my teams/i)).toBeInTheDocument();
+    expect(screen.getByText(/^top 5$/i)).toBeInTheDocument();
   });
 
   it('should render header without h1 on mobile', () => {
