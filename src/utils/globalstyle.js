@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #f7f3f6;
     height: 100%;
-    min-height: 100vh;
+    max-height: 100vh;
     max-width: 100%;
     font-family: 'Roboto';
   }

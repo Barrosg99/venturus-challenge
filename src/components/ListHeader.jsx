@@ -23,9 +23,10 @@ const StyledHeader = styled.div`
   display: flex;
   align-items: center;
   padding: 0px 10px;
+  margin-bottom: 10px;
 
   div:first-child {
-    width: 20%;
+    width: 28%;
   }
 
   div:last-child {

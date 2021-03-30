@@ -31,7 +31,7 @@ const Wrapper = styled.main`
   display:flex;
   justify-content:space-between;
   padding: 40px 30px;
-  height: 89vh;
+  margin-top: 66px;
 
   & > div:nth-child(2) {
     width: 47%;
