@@ -4,7 +4,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { Header } from '../components';
+import { Footer, Header } from '../components';
 
 import {
   Home,
@@ -14,6 +14,7 @@ function Routes() {
   return (
     <>
       <Header />
+      <Footer />
       <Switch>
         <Route path="/" exact component={Home} />
       </Switch>
