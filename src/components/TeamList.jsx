@@ -11,7 +11,6 @@ export default function TeamList() {
         <ListComponent />
         <ListComponent />
         <ListComponent />
-
       </ul>
     </ListContainer>
   );

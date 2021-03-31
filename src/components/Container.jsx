@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { GoPlus } from 'react-icons/go';
 
 export default function Container({
   title, children, icon = false, width,
@@ -11,7 +11,7 @@ export default function Container({
     >
       <div>
         <h1>{title}</h1>
-        {icon && (<AiOutlinePlus />)}
+        {icon && (<GoPlus />)}
       </div>
       {children}
     </StyledContainer>
@@ -29,7 +29,16 @@ const StyledContainer = styled.section`
     display: flex;
     justify-content: space-between;
     padding: 18px;
-    border-bottom: 1px solid #cac7c7; 
+    border-bottom: 1px solid #cac7c7;
+    align-items: center;
+
+    svg {
+      background-image: linear-gradient(to bottom,#aa4179, #87408a);
+      border-radius: 10px;
+      color: white;
+      padding: 6.9px;
+      font-size: 34px;
+    }
   }
 
   h1 {

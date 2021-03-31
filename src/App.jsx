@@ -5,14 +5,17 @@ import {
 } from 'react-router-dom';
 import Globalstyles from './utils/globalstyle';
 import Routes from './routes';
+import { TeamProvider } from './context/TeamContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Reset />
-      <Globalstyles />
-      <Routes />
-    </BrowserRouter>
+    <TeamProvider>
+      <BrowserRouter>
+        <Reset />
+        <Globalstyles />
+        <Routes />
+      </BrowserRouter>
+    </TeamProvider>
   );
 }
 

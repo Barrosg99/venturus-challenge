@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FaSort } from 'react-icons/fa';
 
 export default function ListHeader() {
+  // pega vetor de jogadores pra poder organizar
   return (
     <StyledHeader>
       <div onClick={() => console.log('sort name')} aria-hidden>
