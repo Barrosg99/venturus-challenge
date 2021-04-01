@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useContext, useState } from 'react';
 import joi from 'joi-browser';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 import {
   Container, Input, InputTags, Label,
 } from '../../components';
@@ -13,9 +15,9 @@ export default function CreateTeam() {
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState([]);
   const [errorState, setErrorState] = useState({});
-  // eslint-disable-next-line no-unused-vars
   const { team, setTeam } = useContext(TeamContext);
-  // eslint-disable-next-line no-unused-vars
+  const history = useHistory();
+
   function validate() {
     const schema = joi.object({
       name: joi.string().required(),
@@ -28,20 +30,19 @@ export default function CreateTeam() {
       type,
     }, { abortEarly: false });
     const errors = {};
-    if (error.details) {
+    if (error) {
       error.details.forEach((err) => {
         errors[err.context.key] = true;
       });
       setErrorState(errors);
-      return false;
+      return true;
     }
     setErrorState(errors);
-    return true;
+    return false;
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log('entrei aki pora');
     if (validate()) return;
     team.push({
       name,
@@ -51,6 +52,7 @@ export default function CreateTeam() {
       website,
     });
     setTeam([...team]);
+    history.push('/');
   }
 
   return (
@@ -164,6 +166,7 @@ const StyledForm = styled.form`
   textarea {
     width: 45%;
     font-size: 15px;
+    font-family: inherit;
     border: 1px solid silver;
     border-radius: 3px;
     resize: none;
