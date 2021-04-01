@@ -8,6 +8,7 @@ import { Footer, Header } from '../components';
 
 import {
   Home,
+  CreateTeam,
 } from '../pages';
 
 function Routes() {
@@ -17,6 +18,7 @@ function Routes() {
       <Footer />
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/create-team" component={CreateTeam} />
       </Switch>
     </>
   );

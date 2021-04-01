@@ -37,6 +37,7 @@ const StyledHeader = styled.header`
 
   h1 {
     font-size: 18px;
+    font-weight: bold;
   }
 
   span {

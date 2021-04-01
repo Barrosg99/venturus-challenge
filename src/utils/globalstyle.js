@@ -23,6 +23,15 @@ const GlobalStyle = createGlobalStyle`
   button:focus {
     outline: 0;
   }
+
+  input:active, input:focus {
+    outline: none;
+  }
+
+  textarea:active, textarea:focus {
+    outline: none;
+  }
+
   svg {
     cursor: pointer;
     color: inherit;
