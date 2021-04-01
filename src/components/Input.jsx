@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Label from './Label';
 
 export default function Input({
-  value, onChange, type = 'text', id, width, name, marginTop, label, placeholder, required, selected,
+  value, onChange, type = 'text', id, width, name,
+  marginTop, label, placeholder, required, selected,
+  error,
 }) {
   return (
     <Label
@@ -12,8 +14,10 @@ export default function Input({
       type={type}
       selected={selected}
       label={label}
+      error={error}
     >
       <StyledInput
+        className={error && 'wrongField'}
         id={id}
         type={type}
         value={value}

@@ -4,15 +4,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Label({
-  children, label, width, marginTop, type, selected,
+  children, label, width, marginTop, type, selected, marginBot, error,
 }) {
   return (
     <StyledLabel
       width={width || '45%'}
       marginTop={marginTop}
+      marginBot={marginBot}
       type={type}
       selected={selected}
       label={label}
+      error={error}
     >
       {label}
       {children}
@@ -22,10 +24,12 @@ export default function Label({
 const StyledLabel = styled.label`
   width: ${(props) => props.width};
   margin-top:${(props) => props.marginTop};
+  margin-bottom:${(props) => props.marginBot};
   font-size: 0.7rem;
   font-weight: bold;
   user-select: none;  
-  color: ${({ selected, label }) => {
+  color: ${({ selected, label, error }) => {
+    if (error) return '#c73b42 ';
     if (selected) {
       if ((selected === 'real' && label === 'Real') || (selected === 'fantasy' && label === 'Fantasy')) return '#c73b42 ';
     } else return '#181818d9';
@@ -44,7 +48,11 @@ const StyledLabel = styled.label`
     left: 0;
     height: 20px;
     width: 20px;
-    border: 1px solid silver;
+    border: ${(props) => (props.error ? '1px solid #c73b42' : '1px solid silver')};
     border-radius: 50%;
+  }
+
+  .wrongField {
+    border: 1px solid #c73b42
   }
 `;

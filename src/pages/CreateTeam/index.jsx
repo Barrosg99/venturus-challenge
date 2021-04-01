@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import joi from 'joi-browser';
 import styled from 'styled-components';
 import {
   Container, Input, InputTags, Label,
 } from '../../components';
+import TeamContext from '../../context/TeamContext';
 
 export default function CreateTeam() {
   const [name, setName] = useState('');
@@ -10,14 +12,54 @@ export default function CreateTeam() {
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState([]);
-  // console.log(tags);
+  const [errorState, setErrorState] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const { team, setTeam } = useContext(TeamContext);
+  // eslint-disable-next-line no-unused-vars
+  function validate() {
+    const schema = joi.object({
+      name: joi.string().required(),
+      website: joi.string().uri().required(),
+      type: joi.string().valid(['real', 'fantasy']).required(),
+    });
+    const { error } = schema.validate({
+      name,
+      website,
+      type,
+    }, { abortEarly: false });
+    const errors = {};
+    if (error.details) {
+      error.details.forEach((err) => {
+        errors[err.context.key] = true;
+      });
+      setErrorState(errors);
+      return false;
+    }
+    setErrorState(errors);
+    return true;
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    console.log('entrei aki pora');
+    if (validate()) return;
+    team.push({
+      name,
+      description,
+      type,
+      tags,
+      website,
+    });
+    setTeam([...team]);
+  }
+
   return (
     <Container
       title="Create your team"
       margin="106px auto 19.6px"
       width="94%"
     >
-      <StyledForm>
+      <StyledForm onSubmit={onSubmit}>
         <h1>TEAM INFORMATION </h1>
         <div>
           <Input
@@ -25,19 +67,20 @@ export default function CreateTeam() {
             placeholder="Insert team name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+            error={errorState.name}
           />
           <Input
             label="Team Website"
             placeholder="http://myteam.com"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
-            required
+            error={errorState.website}
           />
         </div>
         <Label
           width="100%"
           marginTop="15px"
+          marginBot="30px"
         >
           Description
           <div>
@@ -48,7 +91,9 @@ export default function CreateTeam() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <Label>
+            <Label
+              error={errorState.type}
+            >
               Team Type
               <div id="types" onChange={(e) => setType(e.target.value)}>
                 <Input
@@ -79,13 +124,23 @@ export default function CreateTeam() {
             </Label>
           </div>
         </Label>
+        <h1>CONFIGURE SQUAD </h1>
+        <div>
+          <div>
+            selected players
+            <button type="submit">Save</button>
+          </div>
+          <div>
+            search players
+          </div>
+        </div>
       </StyledForm>
     </Container>
   );
 }
 
 const StyledForm = styled.form`
-  margin: 30px auto 0;
+  margin: 30px auto 30px;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -99,7 +154,7 @@ const StyledForm = styled.form`
     font-weight: bold;
   }
 
-  & > div:first-of-type {
+  & > div{
     display: flex;
     justify-content: space-between;
     margin-top: 55px;
@@ -127,6 +182,18 @@ const StyledForm = styled.form`
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 15px;
+  }
+
+  button {
+    display: block;
+    width:100%;
+    background-image: linear-gradient(#ac427d,#7d3b80);
+    padding: 7px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid #c73b42
   }
 
   .react-tagsinput {
@@ -157,7 +224,6 @@ const StyledForm = styled.form`
     border: 0;
     color: black;
     font-family: sans-serif;
-    /* font-size: 13px; */
     font-weight: 400;
     margin-bottom: 6px;
     margin-top: 1px;
