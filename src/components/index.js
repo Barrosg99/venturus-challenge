@@ -4,6 +4,7 @@ import Container from './Container';
 import TeamList from './TeamList';
 import Input from './Input';
 import Label from './Label';
+import InputTags from './InputTags';
 
 export {
   Header,
@@ -12,4 +13,5 @@ export {
   TeamList,
   Input,
   Label,
+  InputTags,
 };

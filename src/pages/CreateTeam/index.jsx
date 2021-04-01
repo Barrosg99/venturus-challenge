@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import TagsInput from 'react-tagsinput';
-import { Container, Input, Label } from '../../components';
+import {
+  Container, Input, InputTags, Label,
+} from '../../components';
 
 export default function CreateTeam() {
   const [name, setName] = useState('');
   const [website, setWebsite] = useState('');
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
-  // const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([]);
+  // console.log(tags);
   return (
     <Container
       title="Create your team"
@@ -66,13 +68,17 @@ export default function CreateTeam() {
                   selected={type}
                 />
               </div>
+              <Label
+                label="Tags"
+              >
+                <InputTags
+                  value={tags}
+                  onChange={(e) => setTags(e)}
+                />
+              </Label>
             </Label>
           </div>
         </Label>
-        {/* <TagsInput
-          value={tags.tags}
-          onChange={(e) => setTags(e)}
-        /> */}
       </StyledForm>
     </Container>
   );
@@ -115,11 +121,57 @@ const StyledForm = styled.form`
       justify-content: space-between;
     }
 
-/* #c73b42 */
   #types {
     display: flex;
     width: 50%;
     justify-content: space-between;
     margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  .react-tagsinput {
+    border: 1px solid silver;
+    border-radius: 3px;
+    font-size: 15px;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-top: 10px;
+    height: 60%;
+  }
+
+  .react-tagsinput-tag {
+    background-color: #c73b42;
+    border-radius: 15px;
+    color: white;
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 3px 18px;
+  }
+
+  .react-tagsinput-input {
+    background: transparent;
+    border: 0;
+    color: black;
+    font-family: sans-serif;
+    /* font-size: 13px; */
+    font-weight: 400;
+    margin-bottom: 6px;
+    margin-top: 1px;
+    outline: none;
+    padding: 5px;
+    width: 80px;
+  }
+
+  .react-tagsinput-remove {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .react-tagsinput-tag a::before {
+    content: " x";
   }
 `;
