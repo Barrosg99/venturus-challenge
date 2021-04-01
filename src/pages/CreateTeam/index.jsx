@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Container } from '../../components';
+import TagsInput from 'react-tagsinput';
+import { Container, Input, Label } from '../../components';
 
 export default function CreateTeam() {
+  const [name, setName] = useState('');
+  const [website, setWebsite] = useState('');
+  const [type, setType] = useState('');
+  const [description, setDescription] = useState('');
+  // const [tags, setTags] = useState([]);
   return (
     <Container
       title="Create your team"
@@ -12,36 +18,61 @@ export default function CreateTeam() {
       <StyledForm>
         <h1>TEAM INFORMATION </h1>
         <div>
-          <label htmlFor="name">
-            Team Name
-            <input type="text" id="name" placeholder="Insert team name" />
-          </label>
-          <label htmlFor="website">
-            Team website
-            <input type="text" id="website" placeholder="http://myteam.com" />
-          </label>
+          <Input
+            label="Team Name"
+            placeholder="Insert team name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <Input
+            label="Team Website"
+            placeholder="http://myteam.com"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            required
+          />
         </div>
-        <label htmlFor="description">
+        <Label
+          width="100%"
+          marginTop="15px"
+        >
           Description
           <div>
-            <textarea id="description" cols="30" rows="10" />
-            <label htmlFor="types">
+            <textarea
+              id="description"
+              cols="30"
+              rows="10"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <Label>
               Team Type
-              <div id="types">
-                <label htmlFor="real">
-                  Real
-                  <input type="radio" name="type" id="real" />
-                  <span className="radio" />
-                </label>
-                <label htmlFor="fantasy">
-                  Fantasy
-                  <input type="radio" name="type" id="fantasy" />
-                  <span className="radio" />
-                </label>
+              <div id="types" onChange={(e) => setType(e.target.value)}>
+                <Input
+                  type="radio"
+                  label="Real"
+                  name="types"
+                  width="initial !important"
+                  value="real"
+                  selected={type}
+                />
+                <Input
+                  type="radio"
+                  label="Fantasy"
+                  name="types"
+                  width="initial !important"
+                  value="fantasy"
+                  selected={type}
+                />
               </div>
-            </label>
+            </Label>
           </div>
-        </label>
+        </Label>
+        {/* <TagsInput
+          value={tags.tags}
+          onChange={(e) => setTags(e)}
+        /> */}
       </StyledForm>
     </Container>
   );
@@ -69,47 +100,6 @@ const StyledForm = styled.form`
     width:100%;
   }
 
-  input {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    font-size: 15px;
-    border: 1px solid silver;
-    border-radius: 3px;
-    padding: 6px 10px;
-  }
-
-  input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-
-  input[type="radio"]:checked ~ .radio:after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    display: block;
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    background-image: linear-gradient(to bottom,#aa4179,#87408a);
-  }
-
-  .radio {
-  position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    border: 1px solid silver;
-    border-radius: 50%;
-}
-
-
   textarea {
     width: 45%;
     font-size: 15px;
@@ -119,34 +109,13 @@ const StyledForm = styled.form`
     padding: 6px 10px;
   }
 
-  label {
-    width: 45%;
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #181818d9;
-  }
-
   & > label >  div {
       margin-top: 10px;
       display: flex;
       justify-content: space-between;
     }
 
-  & > label {
-    width: 100%;
-    margin-top:15px;
-
-    label > div > label {
-      display: flex;
-      flex-direction: row-reverse;
-      width: initial;
-      position: relative;
-      padding-left: 35px;
-      height:20px;
-      align-items: center;
-    }
-  }
-
+/* #c73b42 */
   #types {
     display: flex;
     width: 50%;
