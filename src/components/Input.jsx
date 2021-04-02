@@ -5,7 +5,7 @@ import Label from './Label';
 export default function Input({
   value, onChange, type = 'text', id, width, name,
   marginTop, label, placeholder, required, selected,
-  error,
+  error, paddingRight,
 }) {
   return (
     <Label
@@ -15,6 +15,7 @@ export default function Input({
       selected={selected}
       label={label}
       error={error}
+      paddingRight={paddingRight}
     >
       <StyledInput
         className={error && 'wrongField'}

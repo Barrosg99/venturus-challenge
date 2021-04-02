@@ -8,6 +8,7 @@ import {
   Container, Input, InputTags, Label,
 } from '../../components';
 import TeamContext from '../../context/TeamContext';
+import { media850 } from '../../utils/mediaQuery';
 
 export default function CreateTeam() {
   const [name, setName] = useState('');
@@ -101,6 +102,8 @@ export default function CreateTeam() {
       title="Create your team"
       margin="106px auto 19.6px"
       width="94%"
+      mediaWidth="94%"
+      paddingBottom="20px"
     >
       <StyledForm onSubmit={onSubmit}>
         <h1>TEAM INFORMATION </h1>
@@ -146,6 +149,7 @@ export default function CreateTeam() {
                   width="initial !important"
                   value="real"
                   selected={type}
+                  paddingRight="15px"
                 />
                 <Input
                   type="radio"
@@ -283,5 +287,21 @@ const StyledForm = styled.form`
 
   .react-tagsinput-tag a::before {
     content: " x";
+  }
+
+  ${media850} {
+    div {
+      flex-direction: column;
+    }
+
+    textarea {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    label {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 `;

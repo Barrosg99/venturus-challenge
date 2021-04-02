@@ -2,9 +2,10 @@
 /* eslint-disable consistent-return */
 import React from 'react';
 import styled from 'styled-components';
+import { media850 } from '../utils/mediaQuery';
 
 export default function Label({
-  children, label, width, marginTop, type, selected, marginBot, error,
+  children, label, width, marginTop, type, selected, marginBot, error, paddingRight,
 }) {
   return (
     <StyledLabel
@@ -15,6 +16,7 @@ export default function Label({
       selected={selected}
       label={label}
       error={error}
+      paddingRight={paddingRight}
     >
       {label}
       {children}
@@ -54,5 +56,10 @@ const StyledLabel = styled.label`
 
   .wrongField {
     border: 1px solid #c73b42
+  }
+
+  ${media850} {
+    max-width: ${(props) => props.type === 'radio' && '70px'};
+    padding-right: ${(props) => props.paddingRight}
   }
 `;

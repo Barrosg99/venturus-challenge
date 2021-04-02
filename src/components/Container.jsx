@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 import { media850 } from '../utils/mediaQuery';
 
 export default function Container({
-  title, children, icon = false, width, margin, minHeight,
+  title, children, icon = false, width, margin, minHeight, mediaWidth, paddingBottom,
 }) {
   return (
     <StyledContainer
       width={width || 'initial'}
       margin={margin}
       minHeight={minHeight}
+      mediaWidth={mediaWidth || '100%'}
+      paddingBottom={paddingBottom}
     >
       <div>
         <h1>{title}</h1>
@@ -53,6 +55,7 @@ const StyledContainer = styled.section`
   }
 
   ${media850} {
-    width: 100%;
+    width:${(props) => props.mediaWidth};
+    padding-bottom:${(props) => props.paddingBottom}
   }
 `;
