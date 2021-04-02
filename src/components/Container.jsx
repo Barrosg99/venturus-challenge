@@ -4,12 +4,13 @@ import { GoPlus } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 
 export default function Container({
-  title, children, icon = false, width, margin,
+  title, children, icon = false, width, margin, minHeight,
 }) {
   return (
     <StyledContainer
       width={width || 'initial'}
       margin={margin}
+      minHeight={minHeight}
     >
       <div>
         <h1>{title}</h1>
@@ -26,6 +27,7 @@ const StyledContainer = styled.section`
   border-radius: 7px;
   box-shadow: 0px 0px 2px 1px #00000026;
   margin:${(props) => props.margin};
+  min-height:${(props) => props.minHeight};
 
 
   & > div:first-child {

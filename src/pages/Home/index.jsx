@@ -9,6 +9,7 @@ export default function Home() {
         title="My teams"
         icon
         width="47%"
+        minHeight="491px"
       >
         <TeamList />
       </Container>
@@ -33,10 +34,15 @@ const Wrapper = styled.main`
   padding: 40px 30px;
   margin-top: 66px;
 
-  & > div:nth-child(2) {
+  & > div:first-of-type {
     width: 47%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    & > div {
+      background: red;
+      height: 40%;
+    }
   }
 `;
