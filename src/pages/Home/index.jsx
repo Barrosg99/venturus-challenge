@@ -5,7 +5,7 @@ import { media570, media850 } from '../../utils/mediaQuery';
 
 export default function Home() {
   return (
-    <Wrapper>
+    <Wrapper data-testid="main">
       <Container
         title="My teams"
         icon

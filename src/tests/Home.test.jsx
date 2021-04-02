@@ -4,8 +4,8 @@ import { css } from 'styled-components';
 import { render, screen } from './custom-render';
 import App from '../App';
 
-describe('Rendering <App />', () => {
-  it('Renders <App /> component correctly ', () => {
+describe('Rendering Home page', () => {
+  it('Renders home page correctly ', () => {
     render(<App />);
     expect(screen.getByText(/squad management tool/i)).toBeInTheDocument();
     expect(screen.getByText(/john doe/i)).toBeInTheDocument();
@@ -23,6 +23,28 @@ describe('Rendering <App />', () => {
     expect(screen.getByRole('banner')).toHaveStyleRule('display', 'none', {
       media: '(max-width:850px)',
       modifier: css`h1`,
+    });
+  });
+
+  it('should render main with flex-direction column-reverse on mediaQuery', () => {
+    render(<App />);
+    expect(screen.getByTestId('main')).toHaveStyleRule('flex-direction', 'column-reverse', {
+      media: '(max-width:850px)',
+    });
+  });
+
+  it('should render container with width 100% on mediaQuery', () => {
+    render(<App />);
+    expect(screen.getByTestId('main').children[0]).toHaveStyleRule('width', '100%', {
+      media: '(max-width:850px)',
+    });
+  });
+
+  it('should render soccerFieldContainer with min-height: 245.5px on mediaQuery', () => {
+    render(<App />);
+    const soccerFieldContainer = screen.getByTestId('main').children[1].children[1];
+    expect(soccerFieldContainer).toHaveStyleRule('min-height', '245.5px', {
+      media: '(max-width:850px)',
     });
   });
 });

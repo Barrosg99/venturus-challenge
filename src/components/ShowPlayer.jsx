@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media850 } from '../utils/mediaQuery';
 
 export default function ShowPlayer({ type, playerName, pickRate }) {
   return (
@@ -54,4 +55,14 @@ const Container = styled.div`
     }
   }
   
+  ${media850} {
+    div {
+      span:first-child {
+      top: 22%;
+      left: 11%;
+      font-size: 60px;
+      } 
+    }
+    
+  }
 `;
