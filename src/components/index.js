@@ -6,6 +6,7 @@ import Input from './Input';
 import Label from './Label';
 import InputTags from './InputTags';
 import SoccerField from './SoccerField';
+import ShowPlayer from './ShowPlayer';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   Label,
   InputTags,
   SoccerField,
+  ShowPlayer,
 };
