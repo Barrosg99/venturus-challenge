@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GoPlus } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+import { media850 } from '../utils/mediaQuery';
 
 export default function Container({
   title, children, icon = false, width, margin, minHeight,
@@ -51,5 +52,7 @@ const StyledContainer = styled.section`
     }
   }
 
-
+  ${media850} {
+    width: 100%;
+  }
 `;

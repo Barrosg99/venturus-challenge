@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import mediaQuery from '../utils/mediaQuery';
+import { media850 } from '../utils/mediaQuery';
 
 export default function Header() {
   return (
@@ -55,7 +55,7 @@ const StyledHeader = styled.header`
     padding: 10px;
   }
 
-  ${mediaQuery} {
+  ${media850} {
     h1 {
       display:none;
     }

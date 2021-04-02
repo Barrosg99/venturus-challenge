@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-
-import mediaQuery from './mediaQuery';
+import { media850 } from './mediaQuery';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -49,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
 
   html{
     font-size: 18px;
-    ${mediaQuery}{
+    ${media850}{
       font-size: 14px;
     }
   }

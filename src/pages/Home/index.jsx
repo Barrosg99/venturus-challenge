@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, SoccerField, TeamList } from '../../components';
+import { media570, media850 } from '../../utils/mediaQuery';
 
 export default function Home() {
   return (
@@ -40,6 +41,24 @@ const Wrapper = styled.main`
 
     & > section {
       height: 48%;
+    }
+  }
+
+  ${media850} {
+    flex-direction: column-reverse;
+
+    & > div:first-of-type {
+      width: 100%;
+      min-height: 330px;
+      margin-bottom: 15px;
+    }
+  }
+
+  ${media570} {
+    & > div:first-of-type {
+      width: 100%;
+      min-height: initial;
+      margin-bottom: 15px;
     }
   }
 `;

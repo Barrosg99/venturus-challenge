@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TeamContext from '../context/TeamContext';
+import { media570, media850 } from '../utils/mediaQuery';
 import ShowPlayer from './ShowPlayer';
 
 export default function SoccerField() {
@@ -128,5 +129,17 @@ const Container = styled.div`
       border: 1px solid silver;
       margin-left: -25px;
     }
+  }
+
+  ${media850} {
+    min-height: 245.5px;
+
+    & > div:nth-child(2){
+      height: initial;
+    }
+  }
+
+  ${media570} {
+    display: none;
   }
 `;
