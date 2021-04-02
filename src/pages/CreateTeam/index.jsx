@@ -1,8 +1,9 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import joi from 'joi-browser';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import {
   Container, Input, InputTags, Label,
 } from '../../components';
@@ -15,8 +16,26 @@ export default function CreateTeam() {
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState([]);
   const [errorState, setErrorState] = useState({});
+  const [edit, setEdit] = useState(false);
   const { team, setTeam } = useContext(TeamContext);
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      const selectedTeam = team.find((squad) => squad.id === Number(id));
+      if (!selectedTeam) {
+        alert('Team not Found');
+        return history.push('/');
+      }
+      setName(selectedTeam.name);
+      setWebsite(selectedTeam.website);
+      setType(selectedTeam.type);
+      setDescription(selectedTeam.description);
+      setTags(selectedTeam.tags);
+      setEdit(true);
+    }
+  }, []);
 
   function validate() {
     const schema = joi.object({
@@ -43,8 +62,30 @@ export default function CreateTeam() {
 
   function onSubmit(e) {
     e.preventDefault();
+    // setTeam([]);
     if (validate()) return;
+
+    if (edit) {
+      team.every((squad) => {
+        if (squad.id === Number(id)) {
+          squad.name = name;
+          squad.description = description;
+          squad.type = type;
+          squad.tags = tags;
+          squad.website = website;
+          return false;
+        }
+        return true;
+      });
+      history.push('/');
+      return;
+    }
+
+    let count;
+    if (team.length === 0) count = 1;
+    else count = team[team.length - 1].id + 1;
     team.push({
+      id: count,
       name,
       description,
       type,

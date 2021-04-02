@@ -1,16 +1,43 @@
-import React from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import TeamContext from '../context/TeamContext';
 import ListComponent from './ListComponent';
 import ListHeader from './ListHeader';
 
 export default function TeamList() {
+  // eslint-disable-next-line no-unused-vars
+  const { team, setTeam } = useContext(TeamContext);
+  const history = useHistory();
+
+  function remove(id) {
+    const newTeam = team.filter((squad) => squad.id !== id);
+    setTeam(newTeam);
+  }
+
+  function edit(id) {
+    history.push(`/team/${id}`);
+  }
+
+  function share() {
+    alert('Go tell your frieds');
+  }
   return (
     <ListContainer>
       <ListHeader />
       <ul>
-        <ListComponent />
-        <ListComponent />
-        <ListComponent />
+        {team.map((squad) => (
+          <ListComponent
+            name={squad.name}
+            description={squad.description}
+            key={squad.id}
+            id={squad.id}
+            remove={remove}
+            edit={edit}
+            share={share}
+          />
+        ))}
       </ul>
     </ListContainer>
   );

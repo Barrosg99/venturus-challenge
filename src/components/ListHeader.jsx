@@ -1,18 +1,31 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { FaSort } from 'react-icons/fa';
+import TeamContext from '../context/TeamContext';
 
 export default function ListHeader() {
-  // pega vetor de jogadores pra poder organizar
+  const { team, setTeam } = useContext(TeamContext);
+  const [hasClicked, setHasClicked] = useState(true);
+  function sortBy(key) {
+    if (hasClicked) {
+      team.sort((a, b) => a[key].localeCompare(b[key]));
+      setTeam([...team]);
+    } else {
+      team.sort((a, b) => b[key].localeCompare(a[key]));
+      setTeam([...team]);
+    }
+    setHasClicked(!hasClicked);
+  }
+
   return (
     <StyledHeader>
-      <div onClick={() => console.log('sort name')} aria-hidden>
+      <div onClick={() => sortBy('name')} aria-hidden>
         <span>Name</span>
         <FaSort />
       </div>
       <div />
-      <div onClick={() => console.log('sort description')} aria-hidden>
+      <div onClick={() => sortBy('description')} aria-hidden>
         <span>Description</span>
         <FaSort />
       </div>

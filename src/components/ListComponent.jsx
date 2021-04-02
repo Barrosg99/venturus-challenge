@@ -4,19 +4,21 @@ import ReactTooltip from 'react-tooltip';
 import { FaTrashAlt } from 'react-icons/fa';
 import { MdEdit, MdShare } from 'react-icons/md';
 
-export default function ListComponent() {
+export default function ListComponent({
+  name, description, remove, edit, share, id,
+}) {
   return (
     <Component>
       <div>
-        <span>Name</span>
+        <span>{name}</span>
       </div>
       <div />
       <div>
-        <span>Description</span>
+        <span>{description}</span>
         <div>
-          <FaTrashAlt data-tip="Remove" />
-          <MdShare data-tip="Share" />
-          <MdEdit data-tip="Edit" />
+          <FaTrashAlt data-tip="Remove" onClick={() => remove(id)} />
+          <MdShare data-tip="Share" onClick={share} />
+          <MdEdit data-tip="Edit" onClick={() => edit(id)} />
         </div>
         <ReactTooltip effect="solid" backgroundColor="black" />
       </div>
@@ -25,6 +27,10 @@ export default function ListComponent() {
 }
 
 const Component = styled.li`
+  &:last-child {
+    margin-bottom: 5px;
+  }
+
   div:first-child {
     width: 28%;
   }
@@ -53,6 +59,8 @@ const Component = styled.li`
 
   span {
     word-wrap: break-word;
+    overflow: hidden;
+    white-space: pre-line;
     width: 100%;
   }
 `;

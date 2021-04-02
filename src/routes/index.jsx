@@ -18,7 +18,7 @@ function Routes() {
       <Footer />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/create-team" component={CreateTeam} />
+        <Route path={['/team/:id', '/create-team']} component={CreateTeam} />
       </Switch>
     </>
   );
