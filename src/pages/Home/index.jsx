@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, TeamList } from '../../components';
+import { Container, SoccerField, TeamList } from '../../components';
 
 export default function Home() {
   return (
@@ -20,9 +20,7 @@ export default function Home() {
         >
           Top 5 component
         </Container>
-        <div>
-          soccerField Component
-        </div>
+        <SoccerField />
       </div>
     </Wrapper>
   );
@@ -40,9 +38,8 @@ const Wrapper = styled.main`
     flex-direction: column;
     justify-content: space-between;
 
-    & > div {
-      background: red;
-      height: 40%;
+    & > section {
+      height: 48%;
     }
   }
 `;

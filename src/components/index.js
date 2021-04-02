@@ -5,6 +5,7 @@ import TeamList from './TeamList';
 import Input from './Input';
 import Label from './Label';
 import InputTags from './InputTags';
+import SoccerField from './SoccerField';
 
 export {
   Header,
@@ -14,4 +15,5 @@ export {
   Input,
   Label,
   InputTags,
+  SoccerField,
 };

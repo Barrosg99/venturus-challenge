@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <StyledHeader>
       <div>
-        <span>logo</span>
+        <img src="/logo.png" alt="venturus-logo" />
         <h1>Squad Management Tool</h1>
       </div>
       <div>
@@ -25,6 +25,11 @@ const StyledHeader = styled.header`
   position:fixed;
   top:0;
   width:100vw;
+
+  img {
+    width: 42px;
+    margin-right: 15px;
+  }
 
   div {
     display: flex;
