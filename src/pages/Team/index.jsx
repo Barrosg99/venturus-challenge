@@ -19,12 +19,13 @@ export default function CreateTeam() {
   const [errorState, setErrorState] = useState({});
   const [edit, setEdit] = useState(false);
   const { team, setTeam } = useContext(TeamContext);
+  const { teams } = team;
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
     if (id) {
-      const selectedTeam = team.find((squad) => squad.id === Number(id));
+      const selectedTeam = teams.find((squad) => squad.id === Number(id));
       if (!selectedTeam) {
         alert('Team not Found');
         return history.push('/');
@@ -63,11 +64,10 @@ export default function CreateTeam() {
 
   function onSubmit(e) {
     e.preventDefault();
-    // setTeam([]);
     if (validate()) return;
 
     if (edit) {
-      team.every((squad) => {
+      teams.every((squad) => {
         if (squad.id === Number(id)) {
           squad.name = name;
           squad.description = description;
@@ -82,24 +82,24 @@ export default function CreateTeam() {
       return;
     }
 
-    let count;
-    if (team.length === 0) count = 1;
-    else count = team[team.length - 1].id + 1;
-    team.push({
-      id: count,
+    teams.push({
+      id: team.id,
       name,
       description,
       type,
       tags,
       website,
     });
-    setTeam([...team]);
+    setTeam({
+      id: team.id + 1,
+      teams: [...teams],
+    });
     history.push('/');
   }
 
   return (
     <Container
-      title="Create your team"
+      title={edit ? 'Edit your Team' : 'Create your team'}
       margin="106px auto 19.6px"
       width="94%"
       mediaWidth="94%"

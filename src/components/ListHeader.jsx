@@ -6,21 +6,30 @@ import TeamContext from '../context/TeamContext';
 
 export default function ListHeader() {
   const { team, setTeam } = useContext(TeamContext);
+  const { teams } = team;
+
   const [hasClicked, setHasClicked] = useState(true);
+
   function sortBy(key) {
     if (hasClicked) {
-      team.sort((a, b) => a[key].localeCompare(b[key]));
-      setTeam([...team]);
+      teams.sort((a, b) => a[key].localeCompare(b[key]));
+      setTeam({
+        ...team,
+        teams: [...teams],
+      });
     } else {
-      team.sort((a, b) => b[key].localeCompare(a[key]));
-      setTeam([...team]);
+      teams.sort((a, b) => b[key].localeCompare(a[key]));
+      setTeam({
+        ...team,
+        teams: [...teams],
+      });
     }
     setHasClicked(!hasClicked);
   }
 
   return (
     <StyledHeader>
-      <div onClick={() => sortBy('name')} aria-hidden>
+      <div data-testid="sort" onClick={() => sortBy('name')} aria-hidden>
         <span>Name</span>
         <FaSort />
       </div>

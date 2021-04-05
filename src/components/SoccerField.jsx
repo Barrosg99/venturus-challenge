@@ -6,7 +6,7 @@ import { media570, media850 } from '../utils/mediaQuery';
 import ShowPlayer from './ShowPlayer';
 
 export default function SoccerField() {
-  // const { team } = useContext(TeamContext);
+  // usar contexto para pegar os jogadores
   const [players, setPlayers] = useState({});
   const team = [
     {

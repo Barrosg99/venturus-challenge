@@ -7,13 +7,16 @@ import ListComponent from './ListComponent';
 import ListHeader from './ListHeader';
 
 export default function TeamList() {
-  // eslint-disable-next-line no-unused-vars
   const { team, setTeam } = useContext(TeamContext);
+  const { teams } = team;
   const history = useHistory();
 
   function remove(id) {
-    const newTeam = team.filter((squad) => squad.id !== id);
-    setTeam(newTeam);
+    const newTeam = teams.filter((squad) => squad.id !== id);
+    setTeam({
+      ...team,
+      teams: newTeam,
+    });
   }
 
   function edit(id) {
@@ -27,7 +30,7 @@ export default function TeamList() {
     <ListContainer>
       <ListHeader />
       <ul>
-        {team.map((squad) => (
+        {teams.map((squad) => (
           <ListComponent
             name={squad.name}
             description={squad.description}

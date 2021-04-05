@@ -1,8 +1,7 @@
-/* eslint-disable import/prefer-default-export */
 import Home from './Home';
-import CreateTeam from './CreateTeam';
+import Team from './Team';
 
 export {
   Home,
-  CreateTeam,
+  Team,
 };

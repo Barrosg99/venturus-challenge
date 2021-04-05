@@ -6,7 +6,10 @@ const TeamContext = createContext();
 export default TeamContext;
 
 export function TeamProvider({ children }) {
-  const [team, setTeam] = useLocalStorage('@team-list', []);
+  const [team, setTeam] = useLocalStorage('@team-list', {
+    id: 1,
+    teams: [],
+  });
 
   return (
     <TeamContext.Provider

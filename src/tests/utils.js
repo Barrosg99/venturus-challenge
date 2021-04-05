@@ -5,7 +5,7 @@ const generateTeams = (n) => {
   for (let i = 0; i < num; i++) {
     teams.push({
       id: i,
-      name: ['aaaaa', 'zzzzzz'][Math.floor(Math.random() * 2)],
+      name: ['aaaaa', 'dddd', 'cccccc', 'zzzzzz'][Math.floor(Math.random() * 4)],
       description: 'bbbbb',
       type: ['real', 'fantasy'][Math.floor(Math.random() * 2)],
       website: 'some website',
